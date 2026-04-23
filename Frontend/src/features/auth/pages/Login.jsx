@@ -5,26 +5,24 @@ import { useAuth } from '../hooks/useAuth'
 
 const Login = () => {
 
-    const { loading, handleLogin } = useAuth()
-    const navigate = useNavigate()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-    const [ email, setEmail ] = useState("")
-    const [ password, setPassword ] = useState("")
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
     const data = await handleLogin({ email, password })
 
     if (data?.user) {
-        navigate('/')
-        } else {
-    alert("Login failed")
+      navigate('/')
+    } else {
+      alert("Login failed")
     }
+  }
 
-    if(loading){
-        return (<main><h1>Loading.......</h1></main>)
-    }
-
+  if (loading) {
+    return <h1>Loading...</h1>
+  }
 
     return (
         <main>
