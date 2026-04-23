@@ -9,18 +9,18 @@ export const useAuth = () => {
     const context = useContext(AuthContext)
     const { user, setUser, loading, setLoading } = context
 
-
     const handleLogin = async ({ email, password }) => {
-        setLoading(true)
-        try {
-            const data = await login({ email, password })
-            setUser(data.user)
-        } catch (err) {
+    setLoading(true)
+    try {
+        const data = await login({ email, password })
+        setUser(data.user)
+        return data   // 🔥 ADD THIS
+    } catch (err) {
 
-        } finally {
-            setLoading(false)
-        }
+    } finally {
+        setLoading(false)
     }
+}
 
     const handleRegister = async ({ username, email, password }) => {
         setLoading(true)
